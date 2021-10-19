@@ -2,7 +2,10 @@
 
 <div>
   <label>Enter Length</label>
-  <input />
+  <input
+    #providedLength
+    (input)="onChangeLength(providedLength.value)"
+  />
 </div>
 
 <div>
