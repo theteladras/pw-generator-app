@@ -3,8 +3,8 @@
 <div>
   <label>Enter Length</label>
   <input
-    #providedLength
-    (input)="onChangeLength(providedLength.value)"
+    #providedLengthInput
+    (input)="onChangeLength(providedLengthInput.value)"
   />
 </div>
 
@@ -31,7 +31,10 @@
 </div>
 
 <div>
-  <button (click)="onButtonClick()">Generate!</button>
+  <button
+    (click)="onButtonClick()"
+    [disabled]="!(providedLength && (useLetters || useNumbers || useSymbols))"
+  >Generate!</button>
 </div>
 
 <div>
