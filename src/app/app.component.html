@@ -8,38 +8,76 @@
         <input
           #providedLengthInput
           class="input"
-          (input)="onChangeLength(providedLengthInput.value)" />
+          (input)="onChangeLength(providedLengthInput.value)"
+          [value]="getLength()"
+        />
       </div>
 
       <div class="field">
-        <div class="control">
+        <div class="control is-flex is-justify-content-space-between">
           <label class="checkbox">
             <input (change)="onChangeUseLetters()" type="checkbox" />
             Use Letters
           </label>
+          <div>
+            <label class="ml-5 mr-3 is-size-6">Limit amount:</label>
+            <input
+              #limitLettersInput
+              type="number"
+              min="0"
+              [max]="initialProvidedLength/2"
+              [disabled]="!useLetters"
+              [value]="limitLetters"
+              (change)="onLimitLettersChange(limitLettersInput.value)"
+            />
+          </div>
         </div>
       </div>
 
       <div class="field">
-        <div class="control">
+        <div class="control is-flex is-justify-content-space-between">
           <label class="checkbox">
             <input (change)="onChangeUseNumbers()" type="checkbox" />
             Use Numbers
           </label>
+          <div>
+            <label class="ml-5 mr-3 is-size-6">Limit amount:</label>
+            <input
+              #limitNumbersInput
+              type="number"
+              min="0"
+              [max]="initialProvidedLength/2"
+              [disabled]="!useNumbers"
+              [value]="limitNumbers"
+              (change)="onLimitNumbersChange(limitNumbersInput.value)"
+            />
+          </div>
         </div>
       </div>
 
       <div class="field">
-        <div class="control">
+        <div class="control is-flex is-justify-content-space-between">
           <label class="checkbox">
             <input (change)="onChangeUseSymbols()" type="checkbox" />
             Use Symbols
           </label>
+          <div>
+            <label class="ml-5 mr-3 is-size-6">Limit amount:</label>
+            <input
+              #limitSymbolsInput
+              type="number"
+              min="0"
+              [max]="initialProvidedLength/2"
+              [disabled]="!useSymbols"
+              [value]="limitSymbols"
+              (change)="onLimitSymbolsChange(limitSymbolsInput.value)"
+            />
+          </div>
         </div>
       </div>
 
       <button [disabled]="
-          !(providedLength && (useLetters || useNumbers || useSymbols))
+          !(getLength() && (useLetters || useNumbers || useSymbols))
         " (click)="onButtonClick()" class="button is-link is-fullwidth">
         Generate!
       </button>
